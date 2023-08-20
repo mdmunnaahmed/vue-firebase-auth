@@ -1,15 +1,12 @@
 // // abstracts sass
-@import "./abstracts/_variables.scss";
 @import "./abstracts/_mixins.scss";
 @import "./abstracts/_extend.scss";
 
 // // base sass
-@import "./base/_bg";
-@import "./base/_color";
-@import "./base/_global";
-@import "./base/_spacing";
+@import "./base/_bg.scss";
+@import "./base/_color.scss";
+@import "./base/_global.scss";
+@import "./base/_spacing.scss";
 
 // // components sass
-@import "./components/_form";
-
-
+@import "./components/_form.scss";

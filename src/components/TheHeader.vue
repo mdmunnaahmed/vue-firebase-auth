@@ -55,7 +55,7 @@ export default {
 .navbar-brand {
   span {
     color: rgb(58, 61, 73);
-    font-size: 22px;
+    font-size: 26px;
   }
 }
 .router-link-exact-active {
