@@ -31,7 +31,10 @@
               >password should not be less than 6 char</small
             >
           </div>
-          <button class="btn btn-primary">Submit</button>
+          <p class="text-danger" v-if="error">{{ error }}</p>
+          <button class="btn btn-primary mt-0">
+            {{ isLoading ? "Creating Account" : "Sign Up" }}
+          </button>
         </form>
       </div>
     </div>
@@ -68,11 +71,14 @@ export default {
         return;
       }
       this.isLoading = true;
-      await this.$store.dispatch("signup", {
-        email: this.email,
-        password: this.password,
-      });
-
+      try {
+        await this.$store.dispatch("signup", {
+          email: this.email,
+          password: this.password,
+        });
+      } catch (err) {
+        this.error = err.message || "Failed to register, Try again.";
+      }
       this.isLoading = false;
 
       // this.$router.replace("/dashboard");

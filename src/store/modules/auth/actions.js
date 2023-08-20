@@ -16,7 +16,10 @@ export default {
 
     if (!response.ok) {
       // Error
-      console.log("error");
+      const error = new Error(
+        responseData.message || "Failded to authenticate"
+      );
+      throw error;
     }
 
     context.commit("setUser", {
@@ -25,5 +28,4 @@ export default {
       tokenExpiration: responseData.expiresIn,
     });
   },
-
 };
