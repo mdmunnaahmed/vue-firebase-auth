@@ -28,7 +28,7 @@
 <style scoped lang="scss">
 .navbar-brand {
   span {
-    color: rgb(27, 37, 78);
+    color: rgb(58, 61, 73);
     font-size: 22px;
   }
 }
