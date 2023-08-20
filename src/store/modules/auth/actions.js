@@ -23,8 +23,8 @@ export default {
     const expiresIn = responseData.expiresIn * 24 * 365;
     const expirationDate = new Date().getTime() + expiresIn;
 
-    localStorage.setItem("token", responseData.token);
-    localStorage.setItem("token", responseData.localId);
+    localStorage.setItem("token", responseData.idToken);
+    localStorage.setItem("userId", responseData.localId);
     localStorage.setItem("tokenExpiration", expirationDate);
 
     timer = setTimeout(function () {
@@ -60,8 +60,8 @@ export default {
     const expiresIn = responseData.expiresIn * 24 * 365;
     const expirationDate = new Date().getTime() + expiresIn;
 
-    localStorage.setItem("token", responseData.token);
-    localStorage.setItem("token", responseData.localId);
+    localStorage.setItem("token", responseData.idToken);
+    localStorage.setItem("userId", responseData.localId);
     localStorage.setItem("tokenExpiration", expirationDate);
 
     timer = setTimeout(function () {
