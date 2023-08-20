@@ -10,7 +10,7 @@
               type="email"
               class="form-control"
               placeholder="Enter email"
-              v-model="email"
+              v-model.trim="email"
               @blur="emailValidate"
             />
             <small v-if="emailNotValid" class="text-secondary"
@@ -24,7 +24,7 @@
               type="password"
               class="form-control"
               placeholder="Password"
-              v-model="password"
+              v-model.trim="password"
               @blur="passValidate"
             />
             <small v-if="passIsShort" class="text-danger"
@@ -39,7 +39,6 @@
       </div>
     </div>
   </div>
-  {{ userData }}
 </template>
 
 <script>
@@ -66,8 +65,15 @@ export default {
   },
   methods: {
     async submitForm() {
-      if (this.email == "" || this.password == "" || this.password.length < 6) {
+      if (
+        this.email == "" ||
+        this.password == "" ||
+        this.password.length < 6 ||
+        !this.email.includes("@")
+      ) {
         this.formIsValid = false;
+        this.emailValidate();
+        this.passValidate();
         return;
       }
       this.isLoading = true;
@@ -76,12 +82,11 @@ export default {
           email: this.email,
           password: this.password,
         });
+        this.$router.replace("/dashboard");
       } catch (err) {
         this.error = err.message || "Failed to register, Try again.";
       }
       this.isLoading = false;
-
-      // this.$router.replace("/dashboard");
     },
     emailValidate() {
       if (!this.email.includes("@") && this.email != "") {

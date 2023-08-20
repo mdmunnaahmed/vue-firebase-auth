@@ -18,12 +18,32 @@
           </li>
         </ul>
       </div>
-      <router-link to="/dashboard" class="btn btn-secondary text-white"
+      <router-link
+        v-if="auth"
+        to="/dashboard"
+        class="btn btn-secondary text-white"
         >Dashboard</router-link
       >
+      <button v-if="auth" class="px-3" @click="logout">Logout</button>
     </div>
   </nav>
 </template>
+
+<script>
+export default {
+  computed: {
+    auth() {
+      return this.$store.getters.isAuth;
+    },
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch("logout");
+      this.$router.replace("/");
+    },
+  },
+};
+</script>
 
 <style scoped lang="scss">
 .navbar-brand {
