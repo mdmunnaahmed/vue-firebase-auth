@@ -4,4 +4,7 @@ export default {
     state.userId = payload.userId;
     state.tokenExpiration = payload.expiresIn;
   },
+  didAutoLogout(state) {
+    state.didAutoLogout = true;
+  },
 };

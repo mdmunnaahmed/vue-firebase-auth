@@ -19,6 +19,12 @@
         </ul>
       </div>
       <router-link
+        v-if="!auth"
+        to="/login"
+        class="btn btn-secondary text-white"
+        >Login</router-link
+      >
+      <router-link
         v-if="auth"
         to="/dashboard"
         class="btn btn-secondary text-white"

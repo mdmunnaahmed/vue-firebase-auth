@@ -108,4 +108,9 @@ export default {
       userId: null,
     });
   },
+
+  autoLogout(context) {
+    context.dispatch("logout");
+    context.commit("didAutoLogout");
+  },
 };
