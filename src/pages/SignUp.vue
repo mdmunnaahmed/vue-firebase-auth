@@ -36,6 +36,7 @@
       </div>
     </div>
   </div>
+  {{ userData }}
 </template>
 
 <script>
@@ -55,22 +56,22 @@ export default {
       emailIsEmpty: false,
     };
   },
+  computed: {
+    userData() {
+      return this.$store.getters.token;
+    },
+  },
   methods: {
-    submitForm() {
+    async submitForm() {
       if (this.email == "" || this.password == "" || this.password.length < 6) {
         this.formIsValid = false;
-
         return;
       }
-      this.passIsShort = false;
-      this.emailNotValid = false;
-      this.emailIsEmpty = false;
-      this.passIsEmpty = false;
       this.isLoading = true;
-      // await this.$store.dispatch("signup", {
-      //   email: this.email,
-      //   password: this.password,
-      // });
+      await this.$store.dispatch("signup", {
+        email: this.email,
+        password: this.password,
+      });
 
       this.isLoading = false;
 
