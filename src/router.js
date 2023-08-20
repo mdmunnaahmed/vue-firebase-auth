@@ -1,12 +1,15 @@
 import { createRouter, createWebHistory } from "vue-router";
-import LogIn from './components/LogIn.vue'
-import SignUp from '@/components/SignUp'
+import LogIn from './pages/LogIn.vue'
+import SignUp from '@/pages/SignUp'
+import HomePage from '@/pages/HomePage'
+import NotFound from '@/components/NotFound'
+import UserDashboard from '@/pages/UserDashboard'
 const router = createRouter({
   history: createWebHistory(),
   routes: [
     {
       path: '/',
-      redirect: '/login'
+      component: HomePage
     },
     {
       path: '/login',
@@ -15,6 +18,14 @@ const router = createRouter({
     {
       path: '/register',
       component: SignUp
+    },
+    {
+      path: '/dashboard',
+      component: UserDashboard
+    },
+    {
+      path: '/:NotFound(.*)',
+      component: NotFound
     }
   ]
 })

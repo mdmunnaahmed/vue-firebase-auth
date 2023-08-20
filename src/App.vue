@@ -1,26 +1,99 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" class="mb-5" style="max-width: 150px" />
-  <LogIn msg="Welcome to Your Vue.js App" />
+  <the-header></the-header>
+  <router-view></router-view>
 </template>
 
 <script>
-import LogIn from "./components/LogIn.vue";
+import TheHeader from "./components/TheHeader.vue";
 
 export default {
   name: "App",
   components: {
-    LogIn,
+    TheHeader,
   },
 };
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 30px;
+/* font imports */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+
+/* base styles */
+body {
+  font-family: "Poppins";
+}
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+/* navbar */
+nav {
+  display: flex;
+  align-items: center;
+}
+nav h1 {
+  margin-right: auto;
+}
+nav a,
+nav button,
+nav span {
+  margin-left: 20px;
+}
+nav a {
+  color: #444;
+  text-decoration: none;
+  font-weight: bold;
+}
+nav span {
+  color: #777;
+}
+button {
+  background: #00dba4;
+  border: 0;
+  padding: 6px 10px;
+  border-radius: 20px;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* blogs */
+.blog {
+  padding: 10px;
+  margin: 30px 0 20px;
+  border-top: 1px dotted #ddd;
+}
+.blog p {
+  color: #999;
+}
+.blog h3 {
+  color: #00dba4;
+}
+.blog .icons {
+  color: #555;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  font-size: 0.9em;
+}
+.blog .icons .material-icons {
+  font-size: 1em;
+  margin-left: 10px;
+  cursor: pointer;
+}
+.blog .icons .material-icons:hover {
+  color: #00dba4;
+}
+
+/* forms */
+label {
+  display: block;
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
+form button {
+  display: block;
+  margin-top: 20px;
 }
 </style>
