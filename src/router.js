@@ -42,12 +42,10 @@ const router = createRouter({
   ],
 });
 
-const token = store.getters.isAuth;
-
 router.beforeEach((to, _, next) => {
-  if (to.meta.needAuth && !token) {
+  if (to.meta.needAuth && !store.getters.isAuth) {
     next("/login");
-  } else if (to.meta.needUnAuth && token) {
+  } else if (to.meta.needUnAuth && store.getters.isAuth) {
     next("/");
   } else {
     next();

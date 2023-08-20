@@ -1,3 +1,4 @@
+let timer;
 let apikey = "AIzaSyDa3k6jwqN6YhOwzZk81mXubmtMlVb8NbE";
 export default {
   async signup(context, payload) {
@@ -19,8 +20,16 @@ export default {
       throw error;
     }
 
-    localStorage.setItem("token", responseData.idToken);
-    localStorage.setItem("userId", responseData.localId);
+    const expiresIn = responseData.expiresIn * 24 * 365;
+    const expirationDate = new Date().getTime() + expiresIn;
+
+    localStorage.setItem("token", responseData.token);
+    localStorage.setItem("token", responseData.localId);
+    localStorage.setItem("tokenExpiration", expirationDate);
+
+    timer = setTimeout(function () {
+      context.dispatch("didAutoLogout");
+    }, expiresIn);
 
     context.commit("setUser", {
       token: responseData.idToken,
@@ -48,8 +57,16 @@ export default {
       throw error;
     }
 
+    const expiresIn = responseData.expiresIn * 24 * 365;
+    const expirationDate = new Date().getTime() + expiresIn;
+
     localStorage.setItem("token", responseData.token);
     localStorage.setItem("token", responseData.localId);
+    localStorage.setItem("tokenExpiration", expirationDate);
+
+    timer = setTimeout(function () {
+      context.dispatch("didAutoLogout");
+    }, expiresIn);
 
     context.commit("setUser", {
       token: responseData.idToken,
@@ -58,10 +75,33 @@ export default {
     });
   },
 
+  tryLogin(context) {
+    const token = localStorage.getItem("token");
+    const userId = localStorage.getItem("userId");
+    const tokenExpiration = localStorage.getItem("tokenExpiration");
+    const expiresIn = +tokenExpiration - new Date().getTime();
+    if (expiresIn < 0) {
+      return;
+    }
+    timer = setTimeout(function () {
+      context.dispatch("didAutoLogout");
+    }, expiresIn);
+
+    if (token && userId) {
+      context.commit("setUser", {
+        token: token,
+        userId: userId,
+        tokenExpiration: null,
+      });
+    }
+  },
+
   logout(context) {
     localStorage.removeItem("token");
     localStorage.removeItem("userId");
     localStorage.removeItem("tokenExpiration");
+
+    clearTimeout(timer);
 
     context.commit("setUser", {
       token: null,
