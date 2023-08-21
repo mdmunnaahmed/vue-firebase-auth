@@ -1,5 +1,5 @@
 export default {
-  addItem(context, payload) {
+  async addItem(context, payload) {
     const data = {
       name: payload.name,
       mobile: payload.mobile,
@@ -8,7 +8,28 @@ export default {
       favs: payload.favs,
     };
 
-    context.commit("addItem", data);
-    console.log(data);
+    const token = context.rootGetters.token;
+    const userId = context.rootGetters.userId;
+
+    const response = await fetch(
+      `https://auth-munns-default-rtdb.asia-southeast1.firebasedatabase.app/users/${userId}.json?auth=` +
+        token,
+      {
+        method: "POST",
+        body: JSON.stringify(data),
+      }
+    );
+
+    const responseData = await response.json();
+
+    if (!response.ok) {
+      const error = new Error(responseData.message);
+      throw error;
+    }
+
+    context.commit("addItem", {
+      ...data,
+      id: userId,
+    });
   },
 };

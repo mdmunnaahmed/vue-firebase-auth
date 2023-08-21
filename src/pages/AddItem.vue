@@ -12,7 +12,7 @@
           >
           <input
             class="form-control"
-            type="text"
+            type="tel"
             v-model.number.trim="mobile"
           />
         </div>
@@ -76,11 +76,11 @@ export default {
   },
   computed: {
     items() {
-      return this.$store.getters['item/items']
-    }
+      return this.$store.getters["item/items"];
+    },
   },
   methods: {
-    submitForm() {
+    async submitForm() {
       if (
         this.name == "" ||
         this.mobile == "" ||
@@ -91,15 +91,20 @@ export default {
         return;
       }
       this.isLoading = true;
-      this.$store.dispatch("item/addItem", {
-        name: this.name,
-        mobile: this.mobile,
-        address: this.address,
-        city: this.city,
-        favs: this.favs,
-      });
+      try {
+        await this.$store.dispatch("item/addItem", {
+          name: this.name,
+          mobile: this.mobile,
+          address: this.address,
+          city: this.city,
+          favs: this.favs,
+        });
+      } catch (err) {
+        this.error = err.message || "Failded to add item";
+      }
       this.isLoading = false;
       this.formIsValid = true;
+      this.$router.push('/showitem');
     },
     updateItem(event) {
       const item = event.target.id.toLowerCase();
