@@ -21,10 +21,6 @@ const router = createRouter({
       component: AddItem,
     },
     {
-      path: "/showitem",
-      component: ShowItem,
-    },
-    {
       path: "/login",
       component: LogIn,
       meta: {
@@ -41,6 +37,13 @@ const router = createRouter({
     {
       path: "/dashboard",
       component: UserDashboard,
+      meta: {
+        needAuth: true,
+      },
+    },
+    {
+      path: "/showitem",
+      component: ShowItem,
       meta: {
         needAuth: true,
       },

@@ -1,11 +1,11 @@
 <template>
   <div class="container pt-5">
     <base-card v-for="(item, index) in items" :key="index">
-      <h2>{{ item.name }}</h2>
-      <h3>{{ item.mobile }}</h3>
-      <h6>{{ item.address }}</h6>
-      <h6>{{ item.city }}</h6>
-      <h6 v-for="fav in item.favs" :key="fav">{{ fav }}</h6>
+      <h3>{{ item.name }}</h3>
+      <h6>{{ item.mobile }}</h6>
+      <p>{{ item.address }}</p>
+      <p>{{ item.city }}</p>
+      <li v-for="fav in item.favs" :key="fav">{{ fav }}</li>
     </base-card>
   </div>
 </template>
@@ -29,6 +29,9 @@ export default {
     items() {
       return this.$store.getters["item/items"];
     },
+  },
+  created() {
+    this.$store.dispatch("item/loadItems");
   },
 };
 </script>

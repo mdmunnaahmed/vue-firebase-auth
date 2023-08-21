@@ -13,6 +13,9 @@
           <li class="nav-item active">
             <router-link to="/additem" class="nav-link">additem</router-link>
           </li>
+          <li class="nav-item active">
+            <router-link to="/showitem" class="nav-link">show item</router-link>
+          </li>
           <li class="nav-item">
             <router-link to="/login" class="nav-link">Login</router-link>
           </li>

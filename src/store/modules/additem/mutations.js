@@ -1,5 +1,5 @@
 export default {
   addItem(state, payload) {
-    state.items.push(payload);
+    state.items = payload;
   },
 };

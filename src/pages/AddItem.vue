@@ -55,7 +55,6 @@
         <base-button class="mt-3">Add Item</base-button>
       </form>
     </base-card>
-    {{ items }}
   </div>
 </template>
 
