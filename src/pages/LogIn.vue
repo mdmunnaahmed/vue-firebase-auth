@@ -32,6 +32,7 @@
             >
           </div>
           <p class="text-danger" v-if="error">{{ error }}</p>
+          <base-spinner v-if="isLoading"></base-spinner>
           <button class="btn btn-primary mt-0">
             {{ isLoading ? "loging in account" : "Login" }}
           </button>

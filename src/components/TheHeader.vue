@@ -10,6 +10,9 @@
           <li class="nav-item active">
             <router-link to="/" class="nav-link">Home</router-link>
           </li>
+          <li class="nav-item active">
+            <router-link to="/additem" class="nav-link">additem</router-link>
+          </li>
           <li class="nav-item">
             <router-link to="/login" class="nav-link">Login</router-link>
           </li>
@@ -18,19 +21,13 @@
           </li>
         </ul>
       </div>
-      <router-link
-        v-if="!auth"
-        to="/login"
-        class="btn btn-secondary text-white"
-        >Login</router-link
+      <base-button v-if="!auth" link to="/login" mode="outline"
+        >Login</base-button
       >
-      <router-link
-        v-if="auth"
-        to="/dashboard"
-        class="btn btn-secondary text-white"
-        >Dashboard</router-link
+      <base-button v-if="auth" link to="/dashboard" mode="flat"
+        >Dashboard</base-button
       >
-      <button v-if="auth" class="px-3" @click="logout">Logout</button>
+      <base-button v-if="auth" @click="logout">Logout</base-button>
     </div>
   </nav>
 </template>

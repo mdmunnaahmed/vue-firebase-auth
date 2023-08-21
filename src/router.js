@@ -4,6 +4,7 @@ import SignUp from "@/pages/SignUp";
 import HomePage from "@/pages/HomePage";
 import NotFound from "@/components/NotFound";
 import UserDashboard from "@/pages/UserDashboard";
+import AddItem from '@/pages/AddItem'
 
 import store from "./store/index.js";
 
@@ -13,6 +14,10 @@ const router = createRouter({
     {
       path: "/",
       component: HomePage,
+    },
+    {
+      path: "/additem",
+      component: AddItem,
     },
     {
       path: "/login",
