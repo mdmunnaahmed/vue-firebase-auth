@@ -13,14 +13,10 @@ import BaseBadge from "./components/ui/BaseBadge.vue";
 import BaseSpinner from "./components/ui/BaseSpinner.vue";
 import BaseDialog from "./components/ui/BaseDialog.vue";
 
-// Database
-import db from "./firebase/init";
-
 const app = createApp(App);
 
 app.use(router);
 app.use(store);
-app.use(db);
 
 // Components
 app.component("base-card", BaseCard);
