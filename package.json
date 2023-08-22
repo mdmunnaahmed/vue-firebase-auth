@@ -11,6 +11,7 @@
     "bootstrap": "^5.3.1",
     "bootstrap-vue": "^2.23.1",
     "core-js": "^3.8.3",
+    "firebase": "^10.2.0",
     "sass-loader": "^13.3.2",
     "vue": "^3.2.13",
     "vue-router": "^4.2.4",
